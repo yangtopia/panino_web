@@ -22,16 +22,28 @@
     "install-deps": "cd \"dist/functions\" && npm i"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.10",
+    "@material-ui/icons": "^4.9.1",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.0",
+    "moment": "^2.24.0",
     "next": "latest",
+    "next-redux-wrapper": "^5.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-localize-redux": "^3.5.3",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "13.11.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "16.9.6",
+    "@types/webpack-env": "^1.15.1",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-plugin-module-resolver": "^4.0.0",
