@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "panino web project",
   "author": "yangtopia@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yangtopia/panino"
+  },
   "engines": {
     "node": "10"
   },
