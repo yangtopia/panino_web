@@ -6,28 +6,33 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const materialUISheets = new ServerStyleSheets();
+    const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => {
-          return materialUISheets.collect(<App {...props} />);
-        },
-      });
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
 
-    const initialProps = await Document.getInitialProps(ctx);
-    return {
-      ...initialProps,
-      styles: [
-        ...React.Children.toArray(initialProps.styles),
-        materialUISheets.getStyleElement(),
-      ],
-    };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {

@@ -1,1 +1,6 @@
-{}
+{
+  "common": {
+    "index": ["인덱스", "index"],
+    "about": ["어바웃", "about"]
+  }
+}

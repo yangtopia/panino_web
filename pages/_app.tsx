@@ -1,26 +1,25 @@
 import React from 'react';
 import NextApp, { AppContext } from 'next/app';
 import Head from 'next/head';
-import { Provider } from 'react-redux';
-import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
+// import { Provider } from 'react-redux';
+// import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { LocalizeProvider } from 'react-localize-redux';
 import ReactDOMServer from 'react-dom/server';
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from 'styled-components';
 
 import translations from '@static/translation.json';
 
-import configureStore from '@store/configureStore';
+// import configureStore from '@store/configureStore';
 
-import { NxvMaterialUITheme } from '@utils/nxv-material-ui-themes';
+import { PaninoTheme } from '@utils/styled-theme';
 
 import 'moment/locale/ko';
 
-class MyApp extends NextApp<ReduxWrapperAppProps> {
+// class MyApp extends NextApp<ReduxWrapperAppProps> {
+class MyApp extends NextApp {
   static async getInitialProps({ Component, ctx }: AppContext) {
     let pageProps = {};
-
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
@@ -29,19 +28,17 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    // const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <>
         <Head>
-          <title>Nexivil Wiki</title>
+          <title>PANINO</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
           />
-          <meta
-            name="description"
-            content="Nexivil Wiki for Civil Engineering"
-          />
+          <meta name="description" content="MAKE IT YOUR OWN" />
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
         <LocalizeProvider
@@ -57,16 +54,16 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
             },
           }}
         >
-          <MuiThemeProvider theme={NxvMaterialUITheme}>
-            <CssBaseline />
-            <Provider store={store}>
-              <Component {...pageProps} />
-            </Provider>
-          </MuiThemeProvider>
+          {/* <Provider store={store}> */}
+          <ThemeProvider theme={PaninoTheme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+          {/* </Provider> */}
         </LocalizeProvider>
       </>
     );
   }
 }
 
-export default withRedux(configureStore)(MyApp);
+// export default withRedux(configureStore)(MyApp);
+export default MyApp;
