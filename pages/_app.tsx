@@ -1,8 +1,8 @@
 import React from 'react';
 import NextApp, { AppContext } from 'next/app';
 import Head from 'next/head';
-// import { Provider } from 'react-redux';
-// import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
+import { Provider } from 'react-redux';
+import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { LocalizeProvider } from 'react-localize-redux';
 import ReactDOMServer from 'react-dom/server';
 
@@ -10,14 +10,13 @@ import { ThemeProvider } from 'styled-components';
 
 import translations from '@static/translation.json';
 
-// import configureStore from '@store/configureStore';
+import configureStore from '@store/configureStore';
 
 import { PaninoTheme } from '@utils/styled-theme';
 
 import 'moment/locale/ko';
 
-// class MyApp extends NextApp<ReduxWrapperAppProps> {
-class MyApp extends NextApp {
+class MyApp extends NextApp<ReduxWrapperAppProps> {
   static async getInitialProps({ Component, ctx }: AppContext) {
     let pageProps = {};
     if (Component.getInitialProps) {
@@ -28,8 +27,7 @@ class MyApp extends NextApp {
   }
 
   render() {
-    // const { Component, pageProps, store } = this.props;
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
       <>
         <Head>
@@ -54,16 +52,15 @@ class MyApp extends NextApp {
             },
           }}
         >
-          {/* <Provider store={store}> */}
-          <ThemeProvider theme={PaninoTheme}>
-            <Component {...pageProps} />
-          </ThemeProvider>
-          {/* </Provider> */}
+          <Provider store={store}>
+            <ThemeProvider theme={PaninoTheme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </Provider>
         </LocalizeProvider>
       </>
     );
   }
 }
 
-// export default withRedux(configureStore)(MyApp);
-export default MyApp;
+export default withRedux(configureStore)(MyApp);
