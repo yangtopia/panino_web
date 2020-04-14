@@ -1,7 +1,8 @@
 {
-  "name": "with-firebase-hosting-and-typescript",
+  "name": "panino",
   "version": "1.0.0",
-  "description": "Host Next.js SSR app on Firebase Cloud Functions with Firebase Hosting redirects. Built with typescript.",
+  "description": "panino web project",
+  "author": "yangtopia@gmail.com",
   "engines": {
     "node": "10"
   },
