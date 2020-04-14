@@ -14,7 +14,8 @@
           "@store": "./src/store",
           "@static": "./src/static",
           "@utils": "./src/utils",
-          "@models": "./src/models"
+          "@models": "./src/models",
+          "@hooks": "./src/hooks"
         },
         "extensions": [".js", ".jsx", ".tsx"]
       }

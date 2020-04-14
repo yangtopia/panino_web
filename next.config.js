@@ -5,11 +5,14 @@ require('dotenv').config();
 module.exports = {
   distDir: isDev ? '.next' : 'dist/functions/next',
   env: {
-    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
-    FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
-    FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
-    FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
-    FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
+    FIREBASE: {
+      API_KEY: process.env.FIREBASE_API_KEY,
+      PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+      AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+      DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
+      STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
+      CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL,
+    },
   },
   webpack: (config) => {
     return config;

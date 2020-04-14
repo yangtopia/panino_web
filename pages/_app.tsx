@@ -9,12 +9,13 @@ import ReactDOMServer from 'react-dom/server';
 import { ThemeProvider } from 'styled-components';
 
 import translations from '@static/translation.json';
-
 import configureStore from '@store/configureStore';
-
 import { PaninoTheme } from '@utils/styled-theme';
+import initFirebase from '@utils/auth/initFirebase';
 
 import 'moment/locale/ko';
+
+initFirebase();
 
 class MyApp extends NextApp<ReduxWrapperAppProps> {
   static async getInitialProps({ Component, ctx }: AppContext) {
