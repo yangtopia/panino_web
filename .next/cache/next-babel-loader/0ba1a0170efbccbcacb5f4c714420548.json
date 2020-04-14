@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport App from \"../src/components/App\";\nexport default (() => __jsx(App, null, __jsx(\"p\", null, \"About Page\")));","map":null,"metadata":{},"sourceType":"module"}
