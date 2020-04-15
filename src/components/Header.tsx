@@ -5,7 +5,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const Header = styled.header`
-  background-color: ${(props) => props.theme.color['nxv-yellow']};
+  background-color: ${(props) => props.theme.color['panino-yellow']};
 `;
 
 export default ({ pathname }: { pathname?: any }) => (

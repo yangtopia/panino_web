@@ -6,11 +6,14 @@ import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { LocalizeProvider } from 'react-localize-redux';
 import ReactDOMServer from 'react-dom/server';
 
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles';
+
+import { CssBaseline, StylesProvider } from '@material-ui/core';
 
 import translations from '@static/translation.json';
 import configureStore from '@store/configureStore';
-import { PaninoTheme } from '@utils/styled-theme';
+import { paninoTheme } from '@styles/theme';
 import initFirebase from '@utils/auth/initFirebase';
 
 import 'moment/locale/ko';
@@ -25,6 +28,12 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
     }
 
     return { pageProps };
+  }
+
+  componentDidMount() {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentNode)
+      jssStyles.parentNode.removeChild(jssStyles);
   }
 
   render() {
@@ -54,9 +63,14 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
           }}
         >
           <Provider store={store}>
-            <ThemeProvider theme={PaninoTheme}>
-              <Component {...pageProps} />
-            </ThemeProvider>
+            <StylesProvider injectFirst>
+              <StyledThemeProvider theme={paninoTheme}>
+                <MaterialThemeProvider theme={paninoTheme}>
+                  <CssBaseline />
+                  <Component {...pageProps} />
+                </MaterialThemeProvider>
+              </StyledThemeProvider>
+            </StylesProvider>
           </Provider>
         </LocalizeProvider>
       </>
