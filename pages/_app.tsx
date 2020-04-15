@@ -8,13 +8,16 @@ import ReactDOMServer from 'react-dom/server';
 
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles';
-
 import { CssBaseline, StylesProvider } from '@material-ui/core';
 
-import translations from '@static/translation.json';
 import configureStore from '@store/configureStore';
-import { paninoTheme } from '@styles/theme';
+
 import initFirebase from '@utils/auth/initFirebase';
+
+import translations from '@static/translation.json';
+
+import { paninoTheme } from '@styles/styleTheme';
+import '@styles/global.scss';
 
 import 'moment/locale/ko';
 

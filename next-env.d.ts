@@ -1,9 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-import 'styled-components';
-import { PaninoTheme } from './src/styles/theme';
-
 declare namespace NodeJS {
   interface ProcessEnv {
     FIREBASE: {
@@ -16,8 +13,4 @@ declare namespace NodeJS {
       CLIENT_EMAIL: string;
     };
   }
-}
-
-declare module 'styled-components' {
-  export interface DefaultTheme extends PaninoTheme {}
 }

@@ -1,8 +1,9 @@
+const withSass = require('@zeit/next-sass');
 const isDev = process.env.NODE_ENV !== 'production';
 
 require('dotenv').config();
 
-module.exports = {
+module.exports = withSass({
   distDir: isDev ? '.next' : 'dist/functions/next',
   env: {
     FIREBASE: {
@@ -17,4 +18,4 @@ module.exports = {
   webpack: (config) => {
     return config;
   },
-};
+});
