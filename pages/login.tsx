@@ -2,13 +2,14 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import MainContainer from '@containers/LayoutContainer';
+import LoginFormComponent from '@components/LoginComponent';
 
-const IndexPage: NextPage = () => {
+const LoginPage: NextPage = () => {
   return (
     <MainContainer>
-      <h1>TEST</h1>
+      <LoginFormComponent />
     </MainContainer>
   );
 };
 
-export default IndexPage;
+export default LoginPage;

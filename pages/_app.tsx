@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { LocalizeProvider } from 'react-localize-redux';
 import ReactDOMServer from 'react-dom/server';
+import { ConnectedRouter } from 'connected-next-router';
 
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles';
@@ -12,16 +13,12 @@ import { CssBaseline, StylesProvider } from '@material-ui/core';
 
 import configureStore from '@store/configureStore';
 
-import initFirebase from '@utils/auth/initFirebase';
-
 import translations from '@static/translation.json';
 
 import { paninoTheme } from '@styles/styleTheme';
 import '@styles/global.scss';
 
 import 'moment/locale/ko';
-
-initFirebase();
 
 class MyApp extends NextApp<ReduxWrapperAppProps> {
   static async getInitialProps({ Component, ctx }: AppContext) {
@@ -70,7 +67,9 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
               <StyledThemeProvider theme={paninoTheme}>
                 <MaterialThemeProvider theme={paninoTheme}>
                   <CssBaseline />
-                  <Component {...pageProps} />
+                  <ConnectedRouter>
+                    <Component {...pageProps} />
+                  </ConnectedRouter>
                 </MaterialThemeProvider>
               </StyledThemeProvider>
             </StylesProvider>

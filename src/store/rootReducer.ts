@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'connected-next-router';
 
-import article, { ArticleState } from './article/reducer';
+import auth, { AuthState } from './auth/reducer';
 
 export interface RootState {
-  article: ArticleState;
+  auth: AuthState;
+  router: ReturnType<typeof routerReducer>;
 }
 
 const rootReducer = combineReducers<RootState>({
-  article,
+  auth,
+  router: routerReducer,
 });
 
 export default rootReducer;
