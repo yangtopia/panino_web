@@ -12,7 +12,7 @@
     "node": "10"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 5000",
     "preserve": "npm run build-public && npm run build-functions && npm run build-app && npm run copy-deps && npm run install-deps",
     "serve": "cross-env NODE_ENV=production firebase serve",
     "deploy": "firebase deploy",
@@ -23,7 +23,7 @@
     "lint-app": "eslint \"src/**/*.{js,ts,tsx}\"",
     "typecheck-app": "tsc --project tsconfig.json",
     "lint-functions": "eslint \"functions/**/*.{js,ts,tsx}\"",
-    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
+    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock,serviceAccountKey.json}\" \"dist/functions\" -C",
     "install-deps": "cd \"dist/functions\" && npm i"
   },
   "dependencies": {
@@ -43,6 +43,7 @@
     "next": "latest",
     "next-redux-wrapper": "^5.0.0",
     "node-sass": "^4.13.1",
+    "query-string": "^6.12.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-firebaseui": "^4.1.0",

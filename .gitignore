@@ -4,6 +4,7 @@ node_modules/
 .next
 
 .env
+.env.dev
 
 # Firebase cache
 .admin

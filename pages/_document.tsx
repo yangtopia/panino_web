@@ -8,6 +8,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import { KakaoScriptInit } from '@utils/kakaoScript';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -43,10 +44,14 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="ko">
-        <Head />
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          <script src="//developers.kakao.com/sdk/js/kakao.min.js" />
+        </Head>
         <body>
           <Main />
           <NextScript />
+          <KakaoScriptInit />
         </body>
       </Html>
     );

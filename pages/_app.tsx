@@ -47,7 +47,6 @@ class MyApp extends NextApp<ReduxWrapperAppProps> {
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
           />
           <meta name="description" content="MAKE IT YOUR OWN" />
-          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
         <LocalizeProvider
           initialize={{

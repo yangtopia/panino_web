@@ -49,3 +49,10 @@ export interface StsTokenManager {
   accessToken: string;
   expirationTime: number;
 }
+
+export interface FirebaseCustomTokenRequest {
+  userId: string;
+  email: string;
+  photoURL: string;
+  nickname: string;
+}

@@ -42,6 +42,10 @@ const SubmitButton = styled(DefaultButton).attrs({
 const GoogleLoginButton = styled(DefaultButton).attrs({
   type: 'button',
 })``;
+const KakaoLoginButton = styled(DefaultButton).attrs({
+  type: 'button',
+  color: 'secondary',
+})``;
 
 const LoginFormComponent: React.FC = () => {
   const { control, handleSubmit } = useForm();
@@ -54,6 +58,12 @@ const LoginFormComponent: React.FC = () => {
 
   const googleLogin = () => {
     dispatch(loginWithGoogleThunk());
+  };
+
+  const kakaoLogin = () => {
+    window.Kakao.Auth.authorize({
+      redirectUri: `${window.location.origin}/oauth/kakao`,
+    });
   };
 
   return (
@@ -73,11 +83,12 @@ const LoginFormComponent: React.FC = () => {
           name="password"
           label="비밀번호"
           control={control}
-          defaultValue="Wlsrb0312!@"
+          defaultValue="wlsrb0312"
         />
         <SubmitButton>로그인</SubmitButton>
       </Form>
       <GoogleLoginButton onClick={googleLogin}>구글 로그인</GoogleLoginButton>
+      <KakaoLoginButton onClick={kakaoLogin}>카카오 로그인</KakaoLoginButton>
     </Wrap>
   );
 };

@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 import { selectIsLoggedIn, logout } from '@store/auth';
+import { useFirebaseAuth } from '@hooks/useFirebaseAuth';
 
 const Header = styled.header`
   font-size: 4rem;
@@ -29,6 +30,7 @@ const A = styled.a`
 
 const HeaderComponent: React.FC = () => {
   const dispatch = useDispatch();
+  const { isInitializing, user } = useFirebaseAuth();
   const isLogined = useSelector(selectIsLoggedIn);
 
   const signout = () => {
@@ -43,7 +45,7 @@ const HeaderComponent: React.FC = () => {
         </Link>
       </Left>
       <Right>
-        {isLogined ? (
+        {user ? (
           <A onClick={signout}>로그아웃</A>
         ) : (
           <Link href="/login">

@@ -15,6 +15,10 @@
     "public": "dist/public",
     "rewrites": [
       {
+        "source": "/getFirebaseToken",
+        "function": "getFirebaseToken"
+      },
+      {
         "source": "**/**",
         "function": "nextApp"
       }
