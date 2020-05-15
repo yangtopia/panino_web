@@ -2,11 +2,12 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import MainContainer from '@containers/LayoutContainer';
+import UserComponent from '@components/UserComponent';
 
 const IndexPage: NextPage = () => {
   return (
     <MainContainer>
-      <h1>TEST</h1>
+      <UserComponent />
     </MainContainer>
   );
 };
