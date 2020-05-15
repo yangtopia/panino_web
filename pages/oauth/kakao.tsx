@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import queryString from 'query-string';
 import _isEmpty from 'lodash/isEmpty';
 
+import firebase from '@utils/initFirebase';
 import axios from '@utils/axios';
 import {
   KakaoOAuthTokenResponse,
@@ -18,9 +19,12 @@ interface PageProps {
 }
 
 const OAuthKakaoPage: NextPage<PageProps> = ({ firebaseToken }) => {
+  if (firebaseToken) {
+    firebase.auth().signInWithCustomToken(firebaseToken);
+  }
   return (
     <LayoutContainer>
-      <LoadingComponent firebaseToken={firebaseToken} />
+      <LoadingComponent />
     </LayoutContainer>
   );
 };
@@ -69,13 +73,13 @@ OAuthKakaoPage.getInitialProps = async ({ query, isServer }) => {
       } = await axios.post<{
         firebaseToken: string;
       }>('/getFirebaseToken', firebaseTokenRequestParams, {
-        baseURL: process.env.BASE_DOMAIN,
+        baseURL: process.env.FIERBASE_FUNCTIONS_DOMAIN,
       });
       return {
         firebaseToken,
       };
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return {
         firebaseToken: undefined,
       };

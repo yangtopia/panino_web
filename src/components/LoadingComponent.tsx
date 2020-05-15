@@ -1,22 +1,14 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import firebase from '@utils/initFirebase';
+import { useFirebaseAuth } from '@hooks/useFirebaseAuth';
 
-interface Props {
-  firebaseToken?: string;
-}
-
-const LoadingComponent: React.FC<Props> = ({ firebaseToken }) => {
+const LoadingComponent: React.FC = () => {
+  const { user } = useFirebaseAuth();
   const router = useRouter();
   useEffect(() => {
-    if (firebaseToken) {
-      (async () => {
-        await firebase.auth().signInWithCustomToken(firebaseToken);
-      })();
-    }
-    router.replace('/');
-  }, []);
+    router.push('/');
+  }, [user]);
   return <h4>Loading...</h4>;
 };
 
